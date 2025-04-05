@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muslim Veil Couture - Elegant Hijabs & Niqabs</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#1a513b',secondary:'#d4b96e'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Poppins', sans-serif;
+}
+.heading {
+font-family: 'Playfair Display', serif;
+}
+.search-input:focus {
+outline: none;
+}
+.cart-preview {
+display: none;
+transition: all 0.3s ease;
+}
+.cart-icon:hover .cart-preview {
+display: block;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.custom-checkbox {
+position: relative;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #1a513b;
+border-color: #1a513b;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 7px;
+top: 3px;
+width: 6px;
+height: 11px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-radio {
+position: relative;
+cursor: pointer;
+}
+.custom-radio input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.radio-mark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+border: 1px solid #ccc;
+border-radius: 50%;
+}
+.custom-radio input:checked ~ .radio-mark {
+border-color: #1a513b;
+}
+.radio-mark:after {
+content: "";
+position: absolute;
+display: none;
+top: 4px;
+left: 4px;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background: #1a513b;
+}
+.custom-radio input:checked ~ .radio-mark:after {
+display: block;
+}
+.switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #1a513b;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+.range-slider {
+-webkit-appearance: none;
+width: 100%;
+height: 4px;
+border-radius: 5px;
+background: #d3d3d3;
+outline: none;
+}
+.range-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background: #1a513b;
+cursor: pointer;
+}
+.range-slider::-moz-range-thumb {
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background: #1a513b;
+cursor: pointer;
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-primary text-white shadow-md">
+<div class="container mx-auto px-4">
+<div class="flex items-center justify-between py-3">
+<div class="w-32 h-10 flex items-center">
+<a href="#" class="font-['Pacifico'] text-2xl text-white">نقاب</a>
+</div>
+<nav class="hidden md:flex space-x-8">
+<a href="#" class="font-medium hover:text-secondary transition-colors">Home</a>
+<a href="#" class="font-medium hover:text-secondary transition-colors">Shop</a>
+<a href="#" class="font-medium hover:text-secondary transition-colors">About</a>
+<a href="#" class="font-medium hover:text-secondary transition-colors">Contact</a>
+</nav>
+<div class="flex items-center space-x-6">
+<div class="relative">
+<button id="search-toggle" class="w-10 h-10 flex items-center justify-center text-white hover:text-secondary transition-colors">
+<i class="ri-search-line ri-lg"></i>
+</button>
+<div id="search-dropdown" class="hidden absolute right-0 top-full mt-2 w-64 bg-white shadow-lg rounded p-2">
+<div class="flex items-center border border-gray-200 rounded">
+<input type="text" class="search-input w-full px-3 py-2 text-gray-700 bg-transparent" placeholder="Search...">
+<button class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-search-line"></i>
+</button>
+</div>
+</div>
+</div>
+<a href="#" class="w-10 h-10 flex items-center justify-center text-white hover:text-secondary transition-colors">
+<i class="ri-user-line ri-lg"></i>
+</a>
+<div class="relative cart-icon">
+<a href="#" class="w-10 h-10 flex items-center justify-center text-white hover:text-secondary transition-colors">
+<i class="ri-shopping-bag-line ri-lg"></i>
+<span class="absolute -top-1 -right-1 bg-secondary text-primary text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+</a>
+<div class="cart-preview absolute right-0 top-full mt-2 w-72 bg-white shadow-lg rounded p-4 z-10">
+<h3 class="font-medium text-gray-800 mb-3">Your Cart (3)</h3>
+<div class="space-y-3 max-h-60 overflow-y-auto">
+<div class="flex items-center gap-3">
+<div class="w-16 h-16 bg-gray-100 rounded overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/47d388d81a71d99d63e9234f05f10ae7.jpg" alt="Black Chiffon Hijab" class="w-full h-full object-cover object-top">
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-medium text-gray-800">Black Chiffon Hijab</h4>
+<p class="text-xs text-gray-500">1 × $35.00</p>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<i class="ri-close-line"></i>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-16 h-16 bg-gray-100 rounded overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/47a161209ab150eceb517ca5bd903637.jpg" alt="Navy Premium Silk Hijab" class="w-full h-full object-cover object-top">
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-medium text-gray-800">Navy Premium Silk Hijab</h4>
+<p class="text-xs text-gray-500">1 × $45.00</p>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<i class="ri-close-line"></i>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-16 h-16 bg-gray-100 rounded overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/ad15483a36b6e3acdacc7d3d72e3b53a.jpg" alt="Cream Lace Niqab" class="w-full h-full object-cover object-top">
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-medium text-gray-800">Cream Lace Niqab</h4>
+<p class="text-xs text-gray-500">1 × $55.00</p>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<i class="ri-close-line"></i>
+</button>
+</div>
+</div>
+<div class="border-t border-gray-200 mt-3 pt-3">
+<div class="flex justify-between mb-3">
+<span class="font-medium text-gray-600">Subtotal:</span>
+<span class="font-medium text-gray-800">$135.00</span>
+</div>
+<div class="flex gap-2">
+<a href="#" class="flex-1 bg-white border border-primary text-primary py-2 text-center text-sm font-medium !rounded-button hover:bg-gray-50 transition-colors whitespace-nowrap">View Cart</a>
+<a href="#" class="flex-1 bg-primary text-white py-2 text-center text-sm font-medium !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">Checkout</a>
+</div>
+</div>
+</div>
+</div>
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-white hover:text-secondary transition-colors">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full h-[600px]" style="background-image: url('https://public.readdy.ai/ai/img_res/49bdb9b05d9a6af6ad1c0e91da9d631d.jpg'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent"></div>
+<div class="container mx-auto px-4 h-full flex items-center">
+<div class="max-w-lg relative z-10">
+<h1 class="heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">Elegant Modest Fashion for the Modern Woman</h1>
+<p class="text-white/90 text-lg mb-8">Discover our premium collection of handcrafted hijabs and niqabs, designed with quality and elegance in mind.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#" class="bg-secondary text-primary px-8 py-3 font-medium !rounded-button hover:bg-secondary/90 transition-colors whitespace-nowrap">Shop Now</a>
+<a href="#" class="bg-transparent border border-white text-white px-8 py-3 font-medium !rounded-button hover:bg-white/10 transition-colors whitespace-nowrap">View Collections</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Collections -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="heading text-3xl font-bold text-gray-800 mb-3">Our Collections</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Explore our carefully curated collections, designed to combine tradition with modern elegance.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+<div class="h-80 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/07c3cdc6239c062dc6db27ca106e2d72.jpg" alt="Premium Hijabs" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="heading text-xl font-bold text-white mb-2">Premium Hijabs</h3>
+<p class="text-white/90 text-sm mb-4">Luxurious fabrics crafted for everyday elegance.</p>
+<a href="#" class="text-secondary font-medium flex items-center">
+Explore Collection
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+<div class="h-80 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/eb2f6885491ce0857b8cec6ebd90c37e.jpg" alt="Designer Niqabs" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="heading text-xl font-bold text-white mb-2">Designer Niqabs</h3>
+<p class="text-white/90 text-sm mb-4">Elegant designs that combine modesty with style.</p>
+<a href="#" class="text-secondary font-medium flex items-center">
+Explore Collection
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+<div class="h-80 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/2276d25aa654f836e0b6f77fc0d6f626.jpg" alt="Modest Apparel" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="heading text-xl font-bold text-white mb-2">Modest Apparel</h3>
+<p class="text-white/90 text-sm mb-4">Complete your look with our modest clothing line.</p>
+<a href="#" class="text-secondary font-medium flex items-center">
+Explore Collection
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+<div class="h-80 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/2f07e1878e37c069ba6eb07e9296a110.jpg" alt="Accessories" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<h3 class="heading text-xl font-bold text-white mb-2">Accessories</h3>
+<p class="text-white/90 text-sm mb-4">Beautiful accessories to complement your hijab.</p>
+<a href="#" class="text-secondary font-medium flex items-center">
+Explore Collection
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- New Arrivals -->
+<section class="py-16">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-12">
+<h2 class="heading text-3xl font-bold text-gray-800">New Arrivals</h2>
+<div class="flex space-x-2">
+<button id="prev-new" class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</button>
+<button id="next-new" class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group">
+<div class="relative overflow-hidden rounded-lg mb-4">
+<div class="absolute top-3 left-3 z-10">
+<span class="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded">NEW</span>
+</div>
+<img src="https://public.readdy.ai/ai/img_res/f4ca03b38f49f5b85679e532a66743fc.jpg" alt="Sage Premium Jersey Hijab" class="w-full h-80 object-cover object-top transition-transform duration-500 group-hover:scale-105">
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-eye-line"></i>
+</button>
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-heart-line"></i>
+</button>
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-shopping-bag-line"></i>
+</button>
+</div>
+</div>
+<h3 class="font-medium text-gray-800 mb-1">Sage Premium Jersey Hijab</h3>
+<div class="flex items-center mb-2">
+<div class="flex text-yellow-400">
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-half-fill ri-sm"></i>
+</div>
+<span class="text-xs text-gray-500 ml-2">(24)</span>
+</div>
+<p class="text-primary font-medium">$32.00</p>
+</div>
+<div class="group">
+<div class="relative overflow-hidden rounded-lg mb-4">
+<div class="absolute top-3 left-3 z-10">
+<span class="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded">NEW</span>
+</div>
+<img src="https://public.readdy.ai/ai/img_res/03fedebcdb254f08b6dc9ed1bfd6c899.jpg" alt="Dusty Rose Chiffon Hijab" class="w-full h-80 object-cover object-top transition-transform duration-500 group-hover:scale-105">
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-eye-line"></i>
+</button>
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-heart-line"></i>
+</button>
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-shopping-bag-line"></i>
+</button>
+</div>
+</div>
+<h3 class="font-medium text-gray-800 mb-1">Dusty Rose Chiffon Hijab</h3>
+<div class="flex items-center mb-2">
+<div class="flex text-yellow-400">
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+</div>
+<span class="text-xs text-gray-500 ml-2">(42)</span>
+</div>
+<p class="text-primary font-medium">$28.00</p>
+</div>
+<div class="group">
+<div class="relative overflow-hidden rounded-lg mb-4">
+<div class="absolute top-3 left-3 z-10">
+<span class="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded">NEW</span>
+</div>
+<img src="https://public.readdy.ai/ai/img_res/3cc90f89b38a36d8cf3fb61ea04bb3f7.jpg" alt="Ebony Lace Trim Niqab" class="w-full h-80 object-cover object-top transition-transform duration-500 group-hover:scale-105">
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-eye-line"></i>
+</button>
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-heart-line"></i>
+</button>
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-shopping-bag-line"></i>
+</button>
+</div>
+</div>
+<h3 class="font-medium text-gray-800 mb-1">Ebony Lace Trim Niqab</h3>
+<div class="flex items-center mb-2">
+<div class="flex text-yellow-400">
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-line ri-sm"></i>
+</div>
+<span class="text-xs text-gray-500 ml-2">(18)</span>
+</div>
+<p class="text-primary font-medium">$45.00</p>
+</div>
+<div class="group">
+<div class="relative overflow-hidden rounded-lg mb-4">
+<div class="absolute top-3 left-3 z-10">
+<span class="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded">NEW</span>
+</div>
+<img src="https://public.readdy.ai/ai/img_res/c144da68ca932f74d36e754fa40ea6c5.jpg" alt="Navy Premium Silk Hijab" class="w-full h-80 object-cover object-top transition-transform duration-500 group-hover:scale-105">
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-eye-line"></i>
+</button>
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-heart-line"></i>
+</button>
+<button class="bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center mx-1 hover:bg-primary hover:text-white transition-colors">
+<i class="ri-shopping-bag-line"></i>
+</button>
+</div>
+</div>
+<h3 class="font-medium text-gray-800 mb-1">Navy Premium Silk Hijab</h3>
+<div class="flex items-center mb-2">
+<div class="flex text-yellow-400">
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-half-fill ri-sm"></i>
+</div>
+<span class="text-xs text-gray-500 ml-2">(37)</span>
+</div>
+<p class="text-primary font-medium">$42.00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Best Sellers -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="heading text-3xl font-bold text-gray-800 mb-3">Best Sellers</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Our most loved products, chosen by our customers.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white rounded-lg shadow-md overflow-hidden group">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/2afffaad328dac182e9d86fa9133275a.jpg" alt="Black Premium Jersey Hijab" class="w-full h-80 object-cover object-top">
+<div class="absolute top-3 right-3">
+<span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded">BEST SELLER</span>
+</div>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-primary text-white px-6 py-2 font-medium !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+Quick View
+</button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-medium text-gray-800">Black Premium Jersey Hijab</h3>
+<div class="flex text-yellow-400">
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+</div>
+</div>
+<p class="text-gray-600 text-sm mb-4">Our bestselling jersey hijab in classic black, perfect for everyday wear.</p>
+<div class="flex justify-between items-center">
+<p class="text-primary font-medium">$30.00</p>
+<button class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors">
+<i class="ri-shopping-bag-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden group">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/0d5a34783bbffc12d9c66f6806ea3b7f.jpg" alt="Cream Lace Niqab" class="w-full h-80 object-cover object-top">
+<div class="absolute top-3 right-3">
+<span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded">BEST SELLER</span>
+</div>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-primary text-white px-6 py-2 font-medium !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+Quick View
+</button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-medium text-gray-800">Cream Lace Niqab</h3>
+<div class="flex text-yellow-400">
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-half-fill ri-sm"></i>
+</div>
+</div>
+<p class="text-gray-600 text-sm mb-4">Elegant cream niqab with delicate lace details, our customers' favorite.</p>
+<div class="flex justify-between items-center">
+<p class="text-primary font-medium">$55.00</p>
+<button class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors">
+<i class="ri-shopping-bag-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden group">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/d5cd20104a2fd7c70a1e07f24f82f41c.jpg" alt="Mauve Cotton Blend Hijab" class="w-full h-80 object-cover object-top">
+<div class="absolute top-3 right-3">
+<span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded">BEST SELLER</span>
+</div>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-primary text-white px-6 py-2 font-medium !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+Quick View
+</button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-medium text-gray-800">Mauve Cotton Blend Hijab</h3>
+<div class="flex text-yellow-400">
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-fill ri-sm"></i>
+<i class="ri-star-line ri-sm"></i>
+</div>
+</div>
+<p class="text-gray-600 text-sm mb-4">Soft cotton blend hijab in a beautiful mauve shade, perfect for all seasons.</p>
+<div class="flex justify-between items-center">
+<p class="text-primary font-medium">$25.00</p>
+<button class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors">
+<i class="ri-shopping-bag-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<a href="#" class="inline-block bg-primary text-white px-8 py-3 font-medium !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">View All Best Sellers</a>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-16">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="heading text-3xl font-bold text-gray-800 mb-3">What Our Customers Say</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Read testimonials from our satisfied customers around the world.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white p-8 rounded-lg shadow-md">
+<div class="flex text-yellow-400 mb-4">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<p class="text-gray-600 mb-6">"I've been searching for high-quality hijabs for years, and Muslim Veil Couture has exceeded my expectations. The fabric is breathable, the colors are vibrant, and they stay in place all day. Absolutely love them!"</p>
+<div class="flex items-center">
+<div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/16e33737fde479e6cfccf3b266786c59.jpg" alt="Amina Hassan" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Amina Hassan</h4>
+<p class="text-sm text-gray-500">London, UK</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-lg shadow-md">
+<div class="flex text-yellow-400 mb-4">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<p class="text-gray-600 mb-6">"The niqabs from Muslim Veil Couture are simply beautiful. The attention to detail in the embroidery is exquisite, and the fabric is so comfortable to wear. I've received so many compliments. Will definitely be ordering more!"</p>
+<div class="flex items-center">
+<div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/8b6db63698a2e0155842dc7b299f727b.jpg" alt="Fatima Abdulrahman" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Fatima Abdulrahman</h4>
+<p class="text-sm text-gray-500">Dubai, UAE</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-lg shadow-md">
+<div class="flex text-yellow-400 mb-4">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<p class="text-gray-600 mb-6">"As a convert to Islam, finding high-quality modest wear was challenging until I discovered Muslim Veil Couture. Their customer service is exceptional, and they helped me choose the perfect hijabs for my skin tone. The quality is outstanding!"</p>
+<div class="flex items-center">
+<div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/bd6fd49b3bfd5d26b8648cf0acb1b14d.jpg" alt="Sarah Johnson" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Sarah Johnson</h4>
+<p class="text-sm text-gray-500">Toronto, Canada</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="py-16 bg-primary relative overflow-hidden">
+<div class="absolute inset-0 opacity-10" style="background-image: url('https://public.readdy.ai/ai/img_res/46f541831f4343c3d98cfa0aec07499d.jpg'); background-size: cover; background-position: center;"></div>
+<div class="container mx-auto px-4 relative z-10">
+<div class="max-w-2xl mx-auto text-center">
+<h2 class="heading text-3xl font-bold text-white mb-3">Join Our Newsletter</h2>
+<p class="text-white/80 mb-8">Subscribe to receive updates on new collections, special offers, and styling tips.</p>
+<form class="flex flex-col sm:flex-row gap-4">
+<input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded text-gray-700 border-none focus:ring-2 focus:ring-secondary">
+<button type="submit" class="bg-secondary text-primary px-6 py-3 font-medium !rounded-button hover:bg-secondary/90 transition-colors whitespace-nowrap">Subscribe</button>
+</form>
+<p class="text-white/60 text-sm mt-4">By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.</p>
+</div>
+</div>
+</section>
+<!-- Instagram Feed -->
+<section class="py-16">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="heading text-3xl font-bold text-gray-800 mb-3">Follow Us on Instagram</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">@MuslimVeilCouture</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+<a href="#" class="block relative group overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/e013f8f1a2914633fce7ad2b97ec50cc.jpg" alt="Instagram post" class="w-full aspect-square object-cover object-top">
+<div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<i class="ri-instagram-line text-white text-2xl"></i>
+</div>
+</a>
+<a href="#" class="block relative group overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/4111f4baf3edc8032aaee3198ad00f19.jpg" alt="Instagram post" class="w-full aspect-square object-cover object-top">
+<div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<i class="ri-instagram-line text-white text-2xl"></i>
+</div>
+</a>
+<a href="#" class="block relative group overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/20a2949a89da1eb71d2c0637fe2dc5f0.jpg" alt="Instagram post" class="w-full aspect-square object-cover object-top">
+<div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<i class="ri-instagram-line text-white text-2xl"></i>
+</div>
+</a>
+<a href="#" class="block relative group overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/a8bd47e5e8d1c64146a983fd1b263162.jpg" alt="Instagram post" class="w-full aspect-square object-cover object-top">
+<div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<i class="ri-instagram-line text-white text-2xl"></i>
+</div>
+</a>
+<a href="#" class="block relative group overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/20ee2187f069ebfc89a1d3af4066751a.jpg" alt="Instagram post" class="w-full aspect-square object-cover object-top">
+<div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<i class="ri-instagram-line text-white text-2xl"></i>
+</div>
+</a>
+<a href="#" class="block relative group overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/af4b15c2f56b700a646ff70e2aab0927.jpg" alt="Instagram post" class="w-full aspect-square object-cover object-top">
+<div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<i class="ri-instagram-line text-white text-2xl"></i>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="font-['Pacifico'] text-2xl text-white block mb-4">Muslim Veil Couture</a>
+<p class="text-gray-400 mb-6">Elegant modest fashion for the modern Muslim woman. Handcrafted with quality materials and attention to detail.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-primary transition-colors">
+<i class="ri-pinterest-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-medium mb-6">Quick Links</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shop</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-medium mb-6">Customer Service</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping & Returns</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Size Guide</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Track Order</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-medium mb-6">Contact Us</h3>
+<ul class="space-y-3">
+<li class="flex items-start">
+<i class="ri-map-pin-line mt-1 mr-3 text-secondary"></i>
+<span class="text-gray-400">123 Fashion Street, Dubai, UAE</span>
+</li>
+<li class="flex items-start">
+<i class="ri-mail-line mt-1 mr-3 text-secondary"></i>
+<span class="text-gray-400">info@muslimveilcouture.com</span>
+</li>
+<li class="flex items-start">
+<i class="ri-phone-line mt-1 mr-3 text-secondary"></i>
+<span class="text-gray-400">+971 4 123 4567</span>
+</li>
+<li class="flex items-start">
+<i class="ri-time-line mt-1 mr-3 text-secondary"></i>
+<span class="text-gray-400">Mon-Fri: 9am-6pm (GMT+4)</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Muslim Veil Couture. All rights reserved.</p>
+<div class="flex items-center space-x-4">
+<span class="text-gray-500 text-sm">We Accept:</span>
+<div class="flex space-x-3">
+<i class="ri-visa-fill text-2xl text-gray-400"></i>
+<i class="ri-mastercard-fill text-2xl text-gray-400"></i>
+<i class="ri-paypal-fill text-2xl text-gray-400"></i>
+<i class="ri-apple-fill text-2xl text-gray-400"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+// Search toggle
+const searchToggle = document.getElementById('search-toggle');
+const searchDropdown = document.getElementById('search-dropdown');
+searchToggle.addEventListener('click', function() {
+searchDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', function(event) {
+if (!searchToggle.contains(event.target) && !searchDropdown.contains(event.target)) {
+searchDropdown.classList.add('hidden');
+}
+});
+// New Arrivals carousel navigation
+const prevNewBtn = document.getElementById('prev-new');
+const nextNewBtn = document.getElementById('next-new');
+prevNewBtn.addEventListener('click', function() {
+// Carousel navigation logic would go here
+console.log('Previous new arrivals');
+});
+nextNewBtn.addEventListener('click', function() {
+// Carousel navigation logic would go here
+console.log('Next new arrivals'); 
+});
+</script>
+</body>
+</html>
